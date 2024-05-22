@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://shannmu.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://shannmu.github.io/about/</loc>
+    </url>
+    <url>
+        <loc>https://shannmu.github.io/blog/</loc>
+    </url>
+    <url>
+        <loc>https://shannmu.github.io/blog/clap-dynamic-completion/</loc>
+        <lastmod>2024-05-22</lastmod>
+    </url>
+    <url>
+        <loc>https://shannmu.github.io/blog/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://shannmu.github.io/fr/</loc>
+    </url>
+    <url>
+        <loc>https://shannmu.github.io/journal/</loc>
+        <lastmod>2019-10-05</lastmod>
+    </url>
+</urlset>
