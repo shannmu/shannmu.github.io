@@ -15,8 +15,6 @@ theme = "anemone"
 highlight_code = false
 
 
-[taxonomies]
-tags = ["tag1", "tag2"]
 
 [extra]
 # Put all your custom variables here
