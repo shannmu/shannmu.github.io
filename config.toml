@@ -20,6 +20,7 @@ highlight_code = false
 # Put all your custom variables here
 list_pages = true
 default_theme = "light"
+author = "shanmu"
 display_author = true
 
 [languages.fr]
