@@ -14,5 +14,19 @@ theme = "anemone"
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = false
 
+
+[taxonomies]
+tags = ["tag1", "tag2"]
+
 [extra]
 # Put all your custom variables here
+list_pages = true
+default_theme = "light"
+display_author = true
+
+[languages.fr]
+weight = 2
+title = "anemone"
+languageName = "Français"
+languageCode = "fr"
+
