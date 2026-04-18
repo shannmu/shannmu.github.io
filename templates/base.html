@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default(value=config.default_language) }}">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+      <header>
+          {% include "header.html" %}
+      </header>
+      <main>
+          {% block content %}
+          {% endblock content %}
+      </main>
+      <footer>
+          {% include "footer.html" %}
+      </footer>
+</body>
+</html>

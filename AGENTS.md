@@ -5,7 +5,9 @@
 This repository is a Zola static site for `https://shannmu.github.io`.
 Site configuration lives in `config.toml`. Markdown content lives under
 `content/`: top-level pages such as `content/about.md` and `content/journal.md`
-render as standalone pages, while blog posts live in `content/blog/`.
+render as standalone pages, while writing series live in top-level section
+directories such as `content/computer-tech/` and `content/daily-life/`.
+Chinese is the default language; English translations use `.en.md` suffixes.
 The active theme is `anemone`, stored as a Git submodule under
 `themes/anemone`; avoid editing theme files directly unless the change is
 intended to be theme-specific. GitHub Pages deployment is configured in
@@ -33,10 +35,11 @@ title = "About"
 +++
 ```
 
-Name blog posts with a date prefix and slug:
-`content/blog/YYYY-MM-DD-topic-slug.md`. Keep Markdown readable with short
-sections, relative internal links where practical, and fenced code blocks with
-language tags when showing code.
+Name series entries with a date prefix and slug, for example
+`content/computer-tech/YYYY-MM-DD-topic-slug.md`. Use the matching
+`YYYY-MM-DD-topic-slug.en.md` file for English translations. Keep Markdown
+readable with short sections, relative internal links where practical, and
+fenced code blocks with language tags when showing code.
 
 ## Testing Guidelines
 

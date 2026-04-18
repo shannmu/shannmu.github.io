@@ -1,0 +1,11 @@
+<hr>
+<div id="footer-container">
+  {% set current_lang = lang | default(value=config.default_language) %}
+  <div>
+    {% if current_lang == "zh" %}
+      <p>使用 <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> 主题构建。</p>
+    {% else %}
+      <p>Built with <a target="_blank" rel="noopener noreferrer" href="https://www.getzola.org">Zola</a> using the <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> theme.</p>
+    {% endif %}
+  </div>
+</div>

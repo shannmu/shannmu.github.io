@@ -1,4 +1,5 @@
 +++
-title = "About"
+title = "关于"
 +++
-This is an about page, nothing more nothing less `forget about it`.
+
+这里是关于页面。它会随着这个站点一起慢慢补充。

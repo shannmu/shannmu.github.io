@@ -1,0 +1,64 @@
+{% set current_lang = lang | default(value=config.default_language) %}
+{% if config.extra.header_nav %}
+  <nav id="nav-bar">
+    {% for nav_item in config.extra.header_nav %}
+      {% if current_lang == config.default_language %}
+        {% set nav_url = nav_item.path %}
+      {% else %}
+        {% set nav_url = "/" ~ current_lang ~ nav_item.path %}
+      {% endif %}
+      {% set language_key = "name_" ~ current_lang %}
+      <a href="{{ nav_url }}" class="{% if current_path == nav_url %}active{% endif %}">
+        {{ nav_item[language_key] }}
+      </a>
+    {% endfor %}
+    <div>
+      {% if page and page.translations %}
+        {% for translation in page.translations %}
+          {% if translation.lang %}
+            {% set translation_lang = translation.lang %}
+          {% else %}
+            {% set translation_lang = config.default_language %}
+          {% endif %}
+          {% if translation_lang == "zh" %}
+            {% set translation_label = "中文" %}
+          {% elif translation_lang == "en" %}
+            {% set translation_label = "English" %}
+          {% else %}
+            {% set translation_label = translation_lang %}
+          {% endif %}
+          {% if translation_lang == current_lang %}
+            <span class="accent-data">{{ translation_label }}</span>
+          {% else %}
+            <a href="{{ translation.permalink | safe }}">{{ translation_label }}</a>
+          {% endif %}
+        {% endfor %}
+      {% elif section and section.translations %}
+        {% for translation in section.translations %}
+          {% if translation.lang %}
+            {% set translation_lang = translation.lang %}
+          {% else %}
+            {% set translation_lang = config.default_language %}
+          {% endif %}
+          {% if translation_lang == "zh" %}
+            {% set translation_label = "中文" %}
+          {% elif translation_lang == "en" %}
+            {% set translation_label = "English" %}
+          {% else %}
+            {% set translation_label = translation_lang %}
+          {% endif %}
+          {% if translation_lang == current_lang %}
+            <span class="accent-data">{{ translation_label }}</span>
+          {% else %}
+            <a href="{{ translation.permalink | safe }}">{{ translation_label }}</a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      <input type="checkbox" id="theme-toggle" style="display: none;">
+      <label for="theme-toggle" id="theme-toggle-label"><svg id="theme-icon" class="icons"><use href="{{ get_url(path='/icons.svg#lightMode', trailing_slash=false) | safe }}"></use></svg></label>
+      <audio id="theme-sound">
+        <source src="{{ get_url(path='click.ogg', trailing_slash=false) | safe }}" type="audio/ogg">
+      </audio>
+    </div>
+  </nav>
+{% endif %}

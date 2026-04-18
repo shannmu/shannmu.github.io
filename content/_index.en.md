@@ -2,16 +2,17 @@
 +++
 
 ## Overview
-这里记录编程技术、日常生活和一些持续变化的想法。
+
+This site collects programming notes, daily records, and personal reflections.
 
 ## Series
 
-- [计算机技术](@/computer-tech/_index.md)
-- [日常生活](@/daily-life/_index.md)
+- [Computer Tech](@/computer-tech/_index.en.md)
+- [Daily Life](@/daily-life/_index.en.md)
 
 ## Online Presence
 
-保持联系：
+Stay connected:
 
 - Email: [shanmu1901@gmail.com](mailto:shanmu1901@gmail.com)
 - Code Repositories: [shanmu@GitHub](https://github.com/shannmu)
