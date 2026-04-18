@@ -5,7 +5,6 @@
 This blog will be used to share programming techniques and life experiences.
 
 ## Blog Posts
-- [Clap Dynamic Completion](./blog/clap-dynamic-completion)
 
 
 ## Tags

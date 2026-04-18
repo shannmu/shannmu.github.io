@@ -1,3 +1,0 @@
-+++
-title = 'Clap Dynamic Completion'
-+++
