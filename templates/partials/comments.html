@@ -1,0 +1,29 @@
+{% set current_lang = lang | default(value=config.default_language) %}
+{% set comments_enabled = page.extra.comments | default(value=true) %}
+
+{% if comments_enabled and config.extra.giscus and config.extra.giscus.enabled %}
+<section id="comments">
+  <h2>{% if current_lang == "zh" %}评论{% else %}Comments{% endif %}</h2>
+  {% if current_lang == "zh" %}
+    {% set giscus_lang = "zh-CN" %}
+  {% else %}
+    {% set giscus_lang = current_lang %}
+  {% endif %}
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ config.extra.giscus.repo }}"
+          data-repo-id="{{ config.extra.giscus.repo_id }}"
+          data-category="{{ config.extra.giscus.category }}"
+          data-category-id="{{ config.extra.giscus.category_id }}"
+          data-mapping="{{ config.extra.giscus.mapping }}"
+          data-strict="{{ config.extra.giscus.strict }}"
+          data-reactions-enabled="{{ config.extra.giscus.reactions_enabled }}"
+          data-emit-metadata="{{ config.extra.giscus.emit_metadata }}"
+          data-input-position="{{ config.extra.giscus.input_position }}"
+          data-theme="{{ config.extra.giscus.theme }}"
+          data-lang="{{ giscus_lang }}"
+          data-loading="{{ config.extra.giscus.loading }}"
+          crossorigin="anonymous"
+          async>
+  </script>
+</section>
+{% endif %}

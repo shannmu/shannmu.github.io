@@ -29,3 +29,17 @@ header_nav = [
   { path = "/daily-life", name_zh = "/日常生活/", name_en = "/daily life/" },
   { path = "/about", name_zh = "/关于/", name_en = "/about/" },
 ]
+
+[extra.giscus]
+enabled = true
+repo = "shannmu/shannmu.github.io"
+repo_id = "R_kgDOL-msKA"
+category = "Announcements"
+category_id = "DIC_kwDOL-msKM4C7Lz8"
+mapping = "pathname"
+strict = "0"
+reactions_enabled = "1"
+emit_metadata = "0"
+input_position = "bottom"
+theme = "preferred_color_scheme"
+loading = "lazy"
