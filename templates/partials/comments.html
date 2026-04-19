@@ -9,21 +9,74 @@
   {% else %}
     {% set giscus_lang = current_lang %}
   {% endif %}
-  <script src="https://giscus.app/client.js"
-          data-repo="{{ config.extra.giscus.repo }}"
-          data-repo-id="{{ config.extra.giscus.repo_id }}"
-          data-category="{{ config.extra.giscus.category }}"
-          data-category-id="{{ config.extra.giscus.category_id }}"
-          data-mapping="{{ config.extra.giscus.mapping }}"
-          data-strict="{{ config.extra.giscus.strict }}"
-          data-reactions-enabled="{{ config.extra.giscus.reactions_enabled }}"
-          data-emit-metadata="{{ config.extra.giscus.emit_metadata }}"
-          data-input-position="{{ config.extra.giscus.input_position }}"
-          data-theme="{{ config.extra.giscus.theme }}"
-          data-lang="{{ giscus_lang }}"
-          data-loading="{{ config.extra.giscus.loading }}"
-          crossorigin="anonymous"
-          async>
+  <div id="giscus-thread"></div>
+  <script>
+    (function () {
+      const container = document.getElementById('giscus-thread');
+      if (!container) {
+        return;
+      }
+
+      const getTheme = () => {
+        const htmlTheme = document.documentElement.getAttribute('data-theme');
+        if (htmlTheme === 'dark' || htmlTheme === 'light') {
+          return htmlTheme;
+        }
+
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark' || storedTheme === 'light') {
+          return storedTheme;
+        }
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+
+      const setGiscusTheme = () => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe || !iframe.contentWindow) {
+          return;
+        }
+
+        iframe.contentWindow.postMessage({
+          giscus: {
+            setConfig: {
+              theme: getTheme()
+            }
+          }
+        }, 'https://giscus.app');
+      };
+
+      const script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.setAttribute('data-repo', '{{ config.extra.giscus.repo | safe }}');
+      script.setAttribute('data-repo-id', '{{ config.extra.giscus.repo_id | safe }}');
+      script.setAttribute('data-category', '{{ config.extra.giscus.category | safe }}');
+      script.setAttribute('data-category-id', '{{ config.extra.giscus.category_id | safe }}');
+      script.setAttribute('data-mapping', '{{ config.extra.giscus.mapping | safe }}');
+      script.setAttribute('data-strict', '{{ config.extra.giscus.strict | safe }}');
+      script.setAttribute('data-reactions-enabled', '{{ config.extra.giscus.reactions_enabled | safe }}');
+      script.setAttribute('data-emit-metadata', '{{ config.extra.giscus.emit_metadata | safe }}');
+      script.setAttribute('data-input-position', '{{ config.extra.giscus.input_position | safe }}');
+      script.setAttribute('data-theme', getTheme());
+      script.setAttribute('data-lang', '{{ giscus_lang }}');
+      script.setAttribute('data-loading', '{{ config.extra.giscus.loading | safe }}');
+      script.setAttribute('crossorigin', 'anonymous');
+      script.async = true;
+      container.appendChild(script);
+
+      new MutationObserver(setGiscusTheme).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+
+      new MutationObserver(() => {
+        window.setTimeout(setGiscusTheme, 0);
+        window.setTimeout(setGiscusTheme, 500);
+      }).observe(container, {
+        childList: true,
+        subtree: true
+      });
+    })();
   </script>
 </section>
 {% endif %}
