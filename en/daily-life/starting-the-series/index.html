@@ -117,7 +117,7 @@
             
           
           
-            <a href="https://shannmu.github.io/daily-life/starting-the-series/">中文</a>
+            <span class="accent-data">English</span>
           
         
           
@@ -127,7 +127,7 @@
             
           
           
-            <span class="accent-data">English</span>
+            <a href="https://shannmu.github.io/daily-life/starting-the-series/">中文</a>
           
         
       
@@ -183,21 +183,74 @@ what I felt, and keep track of ideas before they disappear.</p>
   
     
   
-  <script src="https://giscus.app/client.js"
-          data-repo="shannmu&#x2F;shannmu.github.io"
-          data-repo-id="R_kgDOL-msKA"
-          data-category="Announcements"
-          data-category-id="DIC_kwDOL-msKM4C7Lz8"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="preferred_color_scheme"
-          data-lang="en"
-          data-loading="lazy"
-          crossorigin="anonymous"
-          async>
+  <div id="giscus-thread"></div>
+  <script>
+    (function () {
+      const container = document.getElementById('giscus-thread');
+      if (!container) {
+        return;
+      }
+
+      const getTheme = () => {
+        const htmlTheme = document.documentElement.getAttribute('data-theme');
+        if (htmlTheme === 'dark' || htmlTheme === 'light') {
+          return htmlTheme;
+        }
+
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark' || storedTheme === 'light') {
+          return storedTheme;
+        }
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+
+      const setGiscusTheme = () => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe || !iframe.contentWindow) {
+          return;
+        }
+
+        iframe.contentWindow.postMessage({
+          giscus: {
+            setConfig: {
+              theme: getTheme()
+            }
+          }
+        }, 'https://giscus.app');
+      };
+
+      const script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.setAttribute('data-repo', 'shannmu/shannmu.github.io');
+      script.setAttribute('data-repo-id', 'R_kgDOL-msKA');
+      script.setAttribute('data-category', 'Announcements');
+      script.setAttribute('data-category-id', 'DIC_kwDOL-msKM4C7Lz8');
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'bottom');
+      script.setAttribute('data-theme', getTheme());
+      script.setAttribute('data-lang', 'en');
+      script.setAttribute('data-loading', 'lazy');
+      script.setAttribute('crossorigin', 'anonymous');
+      script.async = true;
+      container.appendChild(script);
+
+      new MutationObserver(setGiscusTheme).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+
+      new MutationObserver(() => {
+        window.setTimeout(setGiscusTheme, 0);
+        window.setTimeout(setGiscusTheme, 500);
+      }).observe(container, {
+        childList: true,
+        subtree: true
+      });
+    })();
   </script>
 </section>
 
